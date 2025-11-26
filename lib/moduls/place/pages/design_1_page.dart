@@ -1,9 +1,11 @@
+import 'package:app_prueba/moduls/place/models/place_model.dart';
 import 'package:app_prueba/moduls/place/widgets/card_place_image_detail_widget.dart';
 import 'package:app_prueba/moduls/place/widgets/card_place_info_detail_widget.dart';
 import 'package:flutter/material.dart';
 
 class Design1Page extends StatefulWidget {
-  const Design1Page({super.key});
+  PlaceModel placeModel;
+  Design1Page({super.key, required this.placeModel});
 
   @override
   State<Design1Page> createState() => _Design1PageState();
@@ -24,8 +26,8 @@ class _Design1PageState extends State<Design1Page> {
           ),
           child: Column(
             children: [
-              CardPlaceImageDetailWidget(),
-              CardPlaceInfoDetailWidget(),
+              CardPlaceImageDetailWidget(placeModel: widget.placeModel),
+              CardPlaceInfoDetailWidget(placeModel: widget.placeModel),
             ],
           ),
         ),

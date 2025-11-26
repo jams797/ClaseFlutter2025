@@ -1,8 +1,11 @@
+import 'package:app_prueba/moduls/place/models/place_model.dart';
 import 'package:app_prueba/shared/widgets/fade_text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CardPlaceInfoDetailWidget extends StatefulWidget {
-  const CardPlaceInfoDetailWidget({super.key});
+  PlaceModel placeModel;
+  CardPlaceInfoDetailWidget({super.key, required this.placeModel});
 
   @override
   State<CardPlaceInfoDetailWidget> createState() => _CardPlaceInfoDetailWidgetState();
@@ -44,11 +47,11 @@ class _CardPlaceInfoDetailWidgetState extends State<CardPlaceInfoDetailWidget> {
             SizedBox(height: mediaSize.width * 0.04,),
             Row(
               children: [
-                iconDetailInfo(iconData: Icons.timer, text: '8 hours'),
+                iconDetailInfo(iconData: Icons.timer, text: '${widget.placeModel.hours} hours'),
                 Expanded(child: Container()),
-                iconDetailInfo(iconData: Icons.cloud, text: '16 C'),
+                iconDetailInfo(iconData: Icons.cloud, text: '${widget.placeModel.grade} C'),
                 Expanded(child: Container()),
-                iconDetailInfo(iconData: Icons.star, text: '4.5'),
+                iconDetailInfo(iconData: Icons.star, text: widget.placeModel.ranking.toString()),
               ],
             ),
             SizedBox(height: mediaSize.width * 0.04,),
@@ -58,35 +61,43 @@ class _CardPlaceInfoDetailWidgetState extends State<CardPlaceInfoDetailWidget> {
             Expanded(
               // height: mediaSize.height * 0.2,
               child: FadeTextWidget(
-                text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+                text: widget.placeModel.description,
                 fontSize: mediaSize.width * 0.035,
               ),
             ),
             SizedBox(height: mediaSize.width * 0.04,),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: mediaSize.width * 0.05),
-              padding: EdgeInsets.all(mediaSize.width * 0.02),
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(mediaSize.width * 0.03),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Book Now',
-                    style: TextStyle(
-                      fontSize: mediaSize.width * 0.04,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
+            GestureDetector(
+              onTap: () => {
+                launchUrl(
+                  Uri.parse(widget.placeModel.urlButtom),
+                  mode: LaunchMode.externalApplication,
+                )
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: mediaSize.width * 0.05),
+                padding: EdgeInsets.all(mediaSize.width * 0.02),
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(mediaSize.width * 0.03),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Book Now',
+                      style: TextStyle(
+                        fontSize: mediaSize.width * 0.04,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  SizedBox(width: mediaSize.width * 0.02,),
-                  Icon(
-                    Icons.open_in_browser,
-                    color: Colors.white,
-                  )
-                ],
+                    SizedBox(width: mediaSize.width * 0.02,),
+                    Icon(
+                      Icons.open_in_browser,
+                      color: Colors.white,
+                    )
+                  ],
+                ),
               ),
             ),
           ],

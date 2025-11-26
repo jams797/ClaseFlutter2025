@@ -1,7 +1,10 @@
+import 'package:app_prueba/moduls/place/models/place_model.dart';
+import 'package:app_prueba/moduls/place/widgets/card_float_detail_widget.dart';
 import 'package:flutter/material.dart';
 
 class CardPlaceImageDetailWidget extends StatefulWidget {
-  const CardPlaceImageDetailWidget({super.key});
+  PlaceModel placeModel;
+  CardPlaceImageDetailWidget({super.key, required this.placeModel});
 
   @override
   State<CardPlaceImageDetailWidget> createState() => _CardPlaceImageDetailWidgetState();
@@ -32,7 +35,7 @@ class _CardPlaceImageDetailWidgetState extends State<CardPlaceImageDetailWidget>
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
               child: Image.network(
-                'https://images.unsplash.com/photo-1530273883449-aae8b023c196?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Ymx1ZSUyMG1vdW50YWlufGVufDB8fDB8fHww',
+                widget.placeModel.urlImg,
                 height: mediaSize.height * 0.45,
                 fit: BoxFit.cover,
               ),
@@ -48,89 +51,10 @@ class _CardPlaceImageDetailWidgetState extends State<CardPlaceImageDetailWidget>
             iconData: Icons.bookmark_border_outlined,
             onPress: () { print('bookmark'); },
           ),
-          Positioned(
-            bottom: mediaSize.height * 0.015,
-            child: Container(
-              width: mediaSize.width * 0.82,
-              margin: EdgeInsets.all(mediaSize.width * 0.05),
-              padding: EdgeInsets.all(mediaSize.width * 0.05),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    const Color.fromARGB(255, 0, 24, 44),
-                    const Color.fromARGB(255, 0, 52, 94),
-                  ]
-                )
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Andes Mountain',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: mediaSize.width * 0.062,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.location_pin,
-                              color: const Color.fromARGB(255, 153, 153, 153),
-                            ),
-                            Text(
-                              'South, America',
-                              style: TextStyle(
-                                color: const Color.fromARGB(255, 153, 153, 153),
-                                fontSize: mediaSize.width * 0.041,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        'Price',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 153, 153, 153),
-                          fontSize: mediaSize.width * 0.036,
-                        ),
-                      ),
-                      RichText(
-                        text: TextSpan(
-                          text: '\$',
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 100, 100, 100),
-                            fontSize: mediaSize.width * 0.036,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: '230',
-                              style: TextStyle(
-                                color: const Color.fromARGB(255, 209, 209, 209),
-                                fontSize: mediaSize.width * 0.06,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+          CardFloatDetailWidget(
+            widthWidgetParent: mediaSize.width * 0.8,
+            model: widget.placeModel,
+            showPrice: true,
           ),
         ],
       ),

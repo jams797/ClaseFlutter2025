@@ -46,10 +46,10 @@
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 
-	<key>LSApplicationQueriesSchemes</key>
+	<!--<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>sms</string>
 		<string>tel</string>
-	</array>
+	</array>-->
 </dict>
 </plist>

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:app_prueba/moduls/home/page/home_page.dart';
 import 'package:app_prueba/moduls/place/pages/design_1_page.dart';
 import 'package:app_prueba/moduls/place/pages/place_list_page.dart';
 import 'package:app_prueba/prueba_page.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: const PlaceListPage()
+      home: const HomePage()
     );
   }
 }
