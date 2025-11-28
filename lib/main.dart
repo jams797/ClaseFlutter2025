@@ -7,8 +7,16 @@ import 'package:app_prueba/prueba_page.dart';
 import 'package:app_prueba/prueba_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:app_prueba/prueba_archivo.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+AndroidOptions _getAndroidOptions() => const AndroidOptions(
+  encryptedSharedPreferences: true,
+);
+late final FlutterSecureStorage storage;
+
 
 void main() {
+  storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
   runApp(const MyApp());
 }
 

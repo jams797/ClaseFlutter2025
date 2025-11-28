@@ -34,10 +34,13 @@ class _CardPlaceImageDetailWidgetState extends State<CardPlaceImageDetailWidget>
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
-              child: Image.network(
-                widget.placeModel.urlImg,
-                height: mediaSize.height * 0.45,
-                fit: BoxFit.cover,
+              child: Hero(
+                tag: 'ImagePlaceCard',
+                child: Image.network(
+                  widget.placeModel.urlImg,
+                  height: mediaSize.height * 0.45,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
