@@ -50,6 +50,7 @@ class PlacePageController {
 
   void setPlaces() {
     placeList.add(PlaceModel(
+      code: 'AM',
       urlImg: 'https://images.unsplash.com/photo-1530273883449-aae8b023c196?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Ymx1ZSUyMG1vdW50YWlufGVufDB8fDB8fHww',
       title: 'Andes Mountain',
       location: 'South, America',
@@ -62,6 +63,7 @@ class PlacePageController {
       date: DateTime(2025, 10, 10),
     ));
     placeList.add(PlaceModel(
+      code: 'RU',
       urlImg: 'https://res.cloudinary.com/worldpackers/image/upload/c_limit,f_auto,q_auto,w_1140/p6oghqt3kgdpjgvqmkww',
       title: 'Ruinas',
       location: 'Mexico',
@@ -74,6 +76,7 @@ class PlacePageController {
       date: DateTime(2025, 11, 10),
     ));
     placeList.add(PlaceModel(
+      code: 'FF',
       urlImg: 'https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/5815/live/467d1850-e2eb-11ef-a83b-bf768968ed36.jpg.webp',
       title: 'FFFF',
       location: 'DDDD',
@@ -86,6 +89,7 @@ class PlacePageController {
       date: DateTime(2025, 1, 10),
     ));
     placeList.add(PlaceModel(
+      code: 'FR',
       urlImg: 'https://www.avis.co.in/blog/wp-content/uploads/2018/08/paris-600x375.jpg',
       title: 'Francia',
       location: 'Paris',
@@ -98,6 +102,7 @@ class PlacePageController {
       date: DateTime(2025, 5, 11),
     ));
     placeList.add(PlaceModel(
+      code: 'FR2',
       urlImg: 'https://www.avis.co.in/blog/wp-content/uploads/2018/08/paris-600x375.jpg',
       title: 'Francia',
       location: 'Paris',

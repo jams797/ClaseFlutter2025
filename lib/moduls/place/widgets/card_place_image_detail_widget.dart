@@ -1,5 +1,6 @@
 import 'package:app_prueba/moduls/place/models/place_model.dart';
 import 'package:app_prueba/moduls/place/widgets/card_float_detail_widget.dart';
+import 'package:app_prueba/shared/preferences/place_preferences.dart';
 import 'package:flutter/material.dart';
 
 class CardPlaceImageDetailWidget extends StatefulWidget {
@@ -11,6 +12,22 @@ class CardPlaceImageDetailWidget extends StatefulWidget {
 }
 
 class _CardPlaceImageDetailWidgetState extends State<CardPlaceImageDetailWidget> {
+
+  bool isFavourite = false;
+
+  @override
+  void initState() {
+    initStateAsync();
+    super.initState();
+  }
+
+  void initStateAsync () async {
+    List<String> listPlaceFav = await PlacePreferences().getPlacesFavourite();
+    setState(() {
+      isFavourite = listPlaceFav.contains(widget.placeModel.code);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size mediaSize = MediaQuery.of(context).size;
@@ -34,25 +51,37 @@ class _CardPlaceImageDetailWidgetState extends State<CardPlaceImageDetailWidget>
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
-              child: Hero(
-                tag: 'ImagePlaceCard',
-                child: Image.network(
-                  widget.placeModel.urlImg,
-                  height: mediaSize.height * 0.45,
-                  fit: BoxFit.cover,
-                ),
+              child: Image.network(
+                widget.placeModel.urlImg,
+                height: mediaSize.height * 0.45,
+                fit: BoxFit.cover,
               ),
             ),
           ),
           iconFloatImage(
             left: 30.0,
             iconData: Icons.arrow_back_ios,
+            iconDataSelected: Icons.arrow_back_ios,
             onPress: () => Navigator.pop(context),
           ),
           iconFloatImage(
             right: 30.0,
+            isMarket: isFavourite,
             iconData: Icons.bookmark_border_outlined,
-            onPress: () { print('bookmark'); },
+            iconDataSelected: Icons.bookmark,
+            onPress: () {
+              if(isFavourite) {
+                setState(() {
+                  isFavourite = !isFavourite;
+                  PlacePreferences().delPlacesFavourite(widget.placeModel.code);
+                });
+              } else {
+                setState(() {
+                  isFavourite = !isFavourite;
+                  PlacePreferences().addPlacesFavourite(widget.placeModel.code);
+                });
+              }
+            },
           ),
           CardFloatDetailWidget(
             widthWidgetParent: mediaSize.width * 0.8,
@@ -67,7 +96,9 @@ class _CardPlaceImageDetailWidgetState extends State<CardPlaceImageDetailWidget>
   Widget iconFloatImage({
     double? left,
     double? right,
+    bool isMarket = false,
     required IconData iconData,
+    required IconData iconDataSelected,
     Function()? onPress,
   }) {
     Size mediaSize = MediaQuery.of(context).size;
@@ -87,8 +118,8 @@ class _CardPlaceImageDetailWidgetState extends State<CardPlaceImageDetailWidget>
             borderRadius: BorderRadius.circular(100),
           ),
           child: Icon(
-            iconData,
-            color: Colors.white,
+            isMarket ? iconDataSelected : iconData,
+            color: isMarket ? Colors.yellow : Colors.white,
             size: mediaSize.width * 0.035,
           ),
         ),

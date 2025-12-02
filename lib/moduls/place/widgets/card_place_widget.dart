@@ -59,14 +59,11 @@ class _CardPlaceWidgetState extends State<CardPlaceWidget> {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(30.0),
-                child: Hero(
-                  tag: 'ImagePlaceCard',
-                  child: Image.network(
-                    widget.placeModel.urlImg,
-                    width: widget.width * 0.6,
-                    height: widget.width * 0.95,
-                    fit: BoxFit.cover,
-                  ),
+                child: Image.network(
+                  widget.placeModel.urlImg,
+                  width: widget.width * 0.6,
+                  height: widget.width * 0.95,
+                  fit: BoxFit.cover,
                 ),
               ),
               CardFloatDetailWidget(

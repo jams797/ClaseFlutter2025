@@ -36,8 +36,12 @@ class _PlaceListPageState extends State<PlaceListPage> {
   }
 
   void initAsync() async {
-    initText = await PlacePreferences().getPlaceSearch();
-    print('Guardado: $initText');
+    String tmpText = await PlacePreferences().getPlaceSearch();
+    setState(() {
+      initText = tmpText;
+      controller.textFilter = tmpText;
+      // print('Guardado: $initText');
+    });
   }
 
   @override

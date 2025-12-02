@@ -1,4 +1,5 @@
 class PlaceModel {
+  String code;
   String urlImg;
   String title;
   String location;
@@ -11,6 +12,7 @@ class PlaceModel {
   DateTime date;
 
   PlaceModel({
+    required this.code,
     required this.urlImg,
     required this.title,
     required this.location,

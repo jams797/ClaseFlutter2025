@@ -1,5 +1,6 @@
 import 'package:app_prueba/moduls/place/models/place_page_controller.dart';
 import 'package:app_prueba/moduls/place/widgets/card_place_widget.dart';
+import 'package:app_prueba/moduls/place/widgets/list_builder_places_widget.dart';
 import 'package:flutter/material.dart';
 
 class PlaceAllCardPage extends StatefulWidget {
@@ -48,36 +49,37 @@ class _PlaceAllCardPageState extends State<PlaceAllCardPage> {
                 ],
               ),
               Expanded(
-                child: ListView.builder(
-                  itemCount: (controller.placeList.length + 1) ~/ 2,
-                  itemBuilder: (context, row) {
-                    int index = (2 * row);
-                    return Row(
-                      children: [
-                        Expanded(
-                          child: Center(
-                            child: CardPlaceWidget(
-                              indexElement: index > 10 ? 1 : index,
-                              delay: 150,
-                              placeModel: controller.placeList[index],
-                              width: mediaSize.width * 0.65,
-                              height: mediaSize.width * 0.95,
-                            ),
-                          ),
-                        ),
-                        Expanded(child: Center(
-                          child: ((index + 1) < controller.placeList.length) ? CardPlaceWidget(
-                            indexElement: (index + 1) > 10 ? 1 : (index + 1),
-                            delay: 150,
-                            placeModel: controller.placeList[index + 1],
-                            width: mediaSize.width * 0.65,
-                            height: mediaSize.width * 0.95,
-                          ) : Container(),
-                        ))
-                      ],
-                    );
-                  },
-                )
+                child: ListBuilderPlacesWidget(),
+                // child: ListView.builder(
+                //   itemCount: (controller.placeList.length + 1) ~/ 2,
+                //   itemBuilder: (context, row) {
+                //     int index = (2 * row);
+                //     return Row(
+                //       children: [
+                //         Expanded(
+                //           child: Center(
+                //             child: CardPlaceWidget(
+                //               indexElement: index > 10 ? 1 : index,
+                //               delay: 150,
+                //               placeModel: controller.placeList[index],
+                //               width: mediaSize.width * 0.65,
+                //               height: mediaSize.width * 0.95,
+                //             ),
+                //           ),
+                //         ),
+                //         Expanded(child: Center(
+                //           child: ((index + 1) < controller.placeList.length) ? CardPlaceWidget(
+                //             indexElement: (index + 1) > 10 ? 1 : (index + 1),
+                //             delay: 150,
+                //             placeModel: controller.placeList[index + 1],
+                //             width: mediaSize.width * 0.65,
+                //             height: mediaSize.width * 0.95,
+                //           ) : Container(),
+                //         ))
+                //       ],
+                //     );
+                //   },
+                // )
               ),
               // Expanded(
               //   child: SingleChildScrollView(
